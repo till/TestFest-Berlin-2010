@@ -84,7 +84,7 @@ install_snap () {
 
     echo "Configuring the PHP source."
 
-    ./configure --prefix=$install_prefix/installed/$dir $install_exts
+    ./configure --prefix=$install_prefix/TestFest/$dir $install_exts
     if [ "$?" -ne 0 ]; then
         echo "Failed to configure the PHP source in ${dir}.";
         exit 1;
