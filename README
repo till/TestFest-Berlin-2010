@@ -1,16 +1,16 @@
-Deutsch
-=======
+IRC
+===
 
-Das ist das Repository für allen Code der im Rahmen des PHP TestFests 2010 innnerhalb
-der Berliner PHP Usergroup entsteht.
+#phptestfest2010-berlin auf FreeNode
 
-Noch haben wir kein Datum festgelegt, also beteiligt euch an der Datumsfindung:
-http://doodle.com/gh4tsewyzpzm6pez
+Nützliche Links
+===============
 
-English
-=======
+* http://wiki.php.net/qa/testfest-2010/ubuntu-test-environment (Test Umgebung einrichten)
+* http://qa.php.net/tested-methods.php (welche Methoden sind getestet?)
+* http://gcov.php.net/PHP_HEAD/lcov_html/ (Code Coverage)
 
-Repository for all code that's written during the PHP TestFest 2010 in Berlin
+Wie lasse ich Tests laufen?
+===========================
 
-If you want to join us, vote on a date:
-http://doodle.com/gh4tsewyzpzm6pez
+* TEST_PHP_EXECUTABLE=./sapi/cli/php ./sapi/cli/php ./run-tests.php /pfad/zum/test
