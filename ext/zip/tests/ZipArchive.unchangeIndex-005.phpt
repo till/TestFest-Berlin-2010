@@ -16,6 +16,8 @@ var_dump($zip->renameIndex(0, 'testFile2.txt'));
 var_dump($zip->unchangeIndex($idx));
 
 $zip->close();
+--SKIPIF--
+<?php if(!extension_loaded('zip')) die('skip'); ?>
 --EXPECTF--
 int(0)
 string(%d) "%s/testFile.txt"
@@ -24,7 +26,7 @@ bool(true)
 bool(true)
 bool(true)
 --CLEAN--
-@unlink(dirname(__FILE__) . '/foo.zip');
+<?php @unlink(dirname(__FILE__) . '/foo.zip'); ?>
 --CREDITS--
 Till Klampaeckel <till@php.net>
 PHP Testfest Berlin 8/29/2010

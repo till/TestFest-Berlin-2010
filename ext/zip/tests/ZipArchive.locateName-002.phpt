@@ -8,8 +8,10 @@ var_dump($zip->locateName(''));
 --EXPECT--
 bool(true)
 bool(false)
+--SKIPIF--
+<?php if(!extension_loaded('zip')) die('skip'); ?>
 --CLEAN--
-@unlink(dirname(__FILE__) . '/foo.zip');
+<?php @unlink(dirname(__FILE__) . '/foo.zip'); ?>
 --CREDITS--
 Till Klampaeckel <till@php.net>
 PHP Testfest Berlin 8/29/2010
