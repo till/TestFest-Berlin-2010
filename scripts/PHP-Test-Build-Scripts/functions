@@ -91,7 +91,7 @@ install_snap () {
     fi
 
     echo "Building the PHP binary."
-    make && make install
+    make
     if [ "$?" -ne 0 ]; then
         echo "Failed to build the PHP binary in ${dir}.";
         exit 1;
