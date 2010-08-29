@@ -9,6 +9,7 @@ Fabian Blechschmidt Fabian.Blech@gmx.de
 extension_loaded('mbstring') or die('skip');
 function_exists('mb_ereg') or die("skip mb_check_encoding() is not available in this build");
 ?>
+
 --FILE--
 <?php
 echo '//try an int - it will be converted to string and fit in any encoding'."\n";
@@ -28,25 +29,8 @@ $stream = fopen('test.txt', 'r');
 var_dump(mb_check_encoding($stream, 'utf-8'));
 var_dump(mb_check_encoding($stream, 'ISO-8859-1'));
 
-
-/*
-echo '// "german" string in UTF-8'."\n";
-$translatable_string = 'äöüß';
-var_dump(mb_check_encoding($translatable_string, 'utf-8'));
-var_dump(mb_check_encoding($translatable_string, 'ISO-8859-1'));
-
-echo '//"german" string in ISO'."\n";
-$translated_string = iconv('UTF-8', 'ISO-8859-1', $translatable_string);
-var_dump(mb_check_encoding($translated_string, 'utf-8'));
-var_dump(mb_check_encoding($translated_string, 'ISO-8859-1'));
-
-echo '// japanese string in ISO-2022'."\n";
-$trans_jp_string = iconv('UTF-8', 'ISO-2022-JP', $jp_string);
-var_dump(mb_check_encoding($trans_jp_string, 'utf-8'));
-var_dump(mb_check_encoding($trans_jp_string, 'ISO-8859-1'));
-var_dump(mb_check_encoding($trans_jp_string, 'ISO-2022-JP'));
-
- */
+var_dump(mb_check_encoding('hallo!äöü'));
+mb_check_encoding('äöü', 'UTF-8', 4711);
 ?>
 
 --EXPECTF--
@@ -62,3 +46,6 @@ bool(false)
 
 Warning: mb_check_encoding() expects parameter 1 to be string, resource given in %smb_check_encoding.error.php on line %d
 bool(false)
+bool(true)
+
+Warning: mb_check_encoding() expects at most 2 parameters, 3 given in %smb_check_encoding.error.php on line %d

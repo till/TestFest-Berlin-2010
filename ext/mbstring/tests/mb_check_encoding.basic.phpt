@@ -9,7 +9,9 @@ Fabian Blechschmidt Fabian.Blech@gmx.de
 extension_loaded('mbstring') or die('skip');
 function_exists('mb_ereg') or die("skip mb_check_encoding() is not available in this build");
 ?>
-
+--REQUEST--
+return "SCRIPT_NAME=/testäöü.php
+QUERY_STRING=test.php"
 
 --FILE--
 <?php
@@ -33,6 +35,9 @@ $trans_jp_string = iconv('UTF-8', 'ISO-2022-JP', $jp_string);
 var_dump(mb_check_encoding($trans_jp_string, 'utf-8'));
 var_dump(mb_check_encoding($trans_jp_string, 'ISO-8859-1'));
 var_dump(mb_check_encoding($trans_jp_string, 'ISO-2022-JP'));
+
+echo '//checking REQUEST'."\n";
+var_dump(mb_check_encoding());
 ?>
 
 --EXPECT--
@@ -48,4 +53,6 @@ bool(true)
 // japanese string in ISO-2022
 bool(false)
 bool(false)
+bool(true)
+//checking REQUEST
 bool(true)
