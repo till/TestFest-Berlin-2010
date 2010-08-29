@@ -6,7 +6,7 @@ $zip = new ZipArchive;
 $zip->open(dirname(__FILE__) . '/foo.zip', ZIPARCHIVE::CREATE);
 $zip->deleteName();
 --EXPECTF--
-Warning: ZipArchive::deleteName() expects exactly 1 parameter, 0 given in %s/ZipArchive.deleteName-002.php on line 4
+Warning: ZipArchive::deleteName() expects exactly 1 parameter, 0 given in %s on line %d
 --SKIPIF--
 <?php if(!extension_loaded('zip')) die('skip'); ?>
 --CLEAN--

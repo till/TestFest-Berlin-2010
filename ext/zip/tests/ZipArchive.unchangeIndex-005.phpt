@@ -30,7 +30,7 @@ $zip->close();
 <?php if(!extension_loaded('zip')) die('skip'); ?>
 --EXPECTF--
 int(0)
-string(%d) "%s/testFile.txt"
+string(%d) "%stestFile.txt"
 string(12) "testFile.txt"
 bool(true)
 bool(true)
