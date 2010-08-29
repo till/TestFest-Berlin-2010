@@ -1,0 +1,112 @@
+#!/usr/bin/env bash
+
+################################################################################
+# PURPOSE: Builds a PHP testing environment for Ubuntu 9.10.                   #
+# REQUIREMENTS: Ubuntu 9.10, aptitude                                          #
+# NOTE: Please see the accompanying README.txt for further details regarding   #
+#  these scripts.                                                              #
+# AUTHOR: Eric Lee Stewart <ericleestewart@gmail.com>                          #
+#         Till Klampaeckel <till@php.net>                                      #
+################################################################################
+
+setup_folders () {
+    local folder=$1
+    if [ -d $folder ]; then
+        if [ $force_state = "yes" ]; then
+            echo "Cleaning the \"${folder}\" directory."
+            rm -rf "./${folder}/*"
+            if [ "$?" -ne 0 ]; then
+                echo "Failed while cleaning the \"${folder}\" directory.";
+                exit 1;
+            fi
+        else
+            echo "Error: The directory \"${folder}\" already exists."
+            echo "Either delete the directory or use --force to overwrite it."
+            exit 1
+        fi
+    else
+        echo "Creating ${folder}."
+        mkdir $folder
+        if [ "$?" -ne 0 ]; then
+            echo "Failed while creating the ${folder} directory.";
+            exit 1;
+        fi
+    fi
+}
+
+download_snaps () {
+    local archive=$1
+    local snap=$2
+
+    if [ -f $archive ]; then
+        if [ $cached_state = "no" ]; then
+            rm -f $archive
+            if [ "$?" -ne 0 ]; then
+                echo "Failed removing old archive ${archive}.";
+                exit 1;
+            fi
+        fi
+    fi
+
+    if [ -f $archive ]; then
+        echo "Skipping download of ${archive}."
+    else
+        echo "Downloading ${archive} from snaps.php.net."
+        wget -O $archive $snap
+        if [ "$?" -ne 0 ]; then
+            echo "Failed downloading ${archive} from php.snaps.net.";
+            exit 1;
+        fi
+    fi
+}
+
+extract_snap () {
+    local archive=$1
+    local dir=$2
+
+    echo "Extracting ${archive} source."
+    tar -xzf $archive --strip=1 -C "./${dir}"
+    if [ "$?" -ne 0 ]; then
+        echo "Failed extracting ${archive}.";
+        exit 1;
+    fi
+}
+
+install_snap () {
+    local dir=$1
+
+    # Configure and build PHP.
+    cd $dir
+    if [ "$?" -ne 0 ]; then
+        echo "Failed to change directory to ${dir}.";
+        exit 1;
+    fi
+
+    echo "Configuring the PHP source."
+
+    ./configure --prefix=$install_prefix/TestFest/$dir $install_exts
+    if [ "$?" -ne 0 ]; then
+        echo "Failed to configure the PHP source in ${dir}.";
+        exit 1;
+    fi
+
+    echo "Building the PHP binary."
+    make
+    if [ "$?" -ne 0 ]; then
+        echo "Failed to build the PHP binary in ${dir}.";
+        exit 1;
+    fi
+
+    cd ..
+}
+
+cleanup () {
+    if [ $cached_state = "no" ]; then
+        echo "Cleaning up ${1}."
+        rm -f $1
+        if [ "$?" -ne 0 ]; then
+            echo "Failed to remove ${1}.";
+            exit 1;
+        fi
+    fi
+}
