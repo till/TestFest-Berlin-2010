@@ -6,7 +6,7 @@ $zip = new ZipArchive;
 $zip->open(dirname(__FILE__) . '/foo.zip', ZIPARCHIVE::CREATE);
 $zip->unchangeIndex('foo');
 --EXPECTF--
-Warning: ZipArchive::unchangeIndex() expects parameter 1 to be long, string given in %s/ZipArchive.unchangeIndex-003.php on line 4
+Warning: ZipArchive::unchangeIndex() expects parameter 1 to be long, string given in %s on line %d
 --SKIPIF--
 <?php if(!extension_loaded('zip')) die('skip'); ?>
 --CLEAN--
