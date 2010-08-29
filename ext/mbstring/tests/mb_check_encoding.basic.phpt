@@ -7,7 +7,7 @@ Fabian Blechschmidt Fabian.Blech@gmx.de
 --SKIPIF--
 <?php
 extension_loaded('mbstring') or die('skip');
-function_exists('mb_ereg') or die("skip mb_ereg() is not available in this build");
+function_exists('mb_ereg') or die("skip mb_check_encoding() is not available in this build");
 ?>
 
 
