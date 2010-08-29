@@ -7,8 +7,10 @@ $zip->open(dirname(__FILE__) . '/foo.zip', ZIPARCHIVE::CREATE);
 $zip->setCommentName('', 'foobar');
 --EXPECTF--
 Notice: ZipArchive::setCommentName(): Empty string as entry name in %s/ZipArchive.setCommentName-001.php on line 4
+--SKIPIF--
+<?php if(!extension_loaded('zip')) die('skip'); ?>
 --CLEAN--
-@unlink(dirname(__FILE__) . '/foo.zip');
+<?php @unlink(dirname(__FILE__) . '/foo.zip'); ?>
 --CREDITS--
 Till Klampaeckel <till@php.net>
 PHP Testfest Berlin 8/29/2010

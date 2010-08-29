@@ -1,12 +1,12 @@
 --TEST--
-ZipArchive::deleteName(): Failure with missing parameter.
+ZipArchive::unchangeIndex(): Return false if the internal index and the supplied differ.
 --FILE--
 <?php
 $zip = new ZipArchive;
 $zip->open(dirname(__FILE__) . '/foo.zip', ZIPARCHIVE::CREATE);
-$zip->deleteName();
---EXPECTF--
-Warning: ZipArchive::deleteName() expects exactly 1 parameter, 0 given in %s/ZipArchive.deleteName-002.php on line 4
+var_dump($zip->unchangeIndex(10)); // just supply an unknown
+--EXPECT--
+bool(false)
 --SKIPIF--
 <?php if(!extension_loaded('zip')) die('skip'); ?>
 --CLEAN--
