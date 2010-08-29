@@ -1,4 +1,4 @@
 php-src
 scripts/PHP-Test-Build-Scripts/php*
-covdata-zip.info
+covdata-*
 htmlcoverage_*
