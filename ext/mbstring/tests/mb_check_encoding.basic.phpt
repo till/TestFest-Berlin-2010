@@ -2,7 +2,7 @@
 Test mb_check_encoding - basic functionality
 --CREDITS--
 Fabian Blechschmidt Fabian.Blech@gmx.de
-#PHP TestFest 2010 Berlin
+PHP TestFest Berlin 2010-08-29
 
 --SKIPIF--
 <?php
