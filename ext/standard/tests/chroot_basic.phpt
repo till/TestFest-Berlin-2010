@@ -2,12 +2,10 @@
 basic test for chroot
 --SKIPIF--
 <?php
-// test doesn't run unter windows
-if('WIN' === substr(PHP_OS, 0, 3)) { die('skip'); }
-// has to be root to chroot()
-if (0 != posix_getuid()) { die('skip'); }
-// test can't be run with / as work directory
-if ('/' === posix_cwd()) { die('skip'); }
+if (!extension_loaded("posix")) { die('skip - need POSIX extension for testing'); }
+if ('WIN' === substr(PHP_OS, 0, 3)) { die('skip - can\'t test with windows'); }
+if (0 != posix_getuid()) { die('skip - you need root privileges to test'); }
+if ('/' === posix_cwd()) { die('skip - can\'t test in / as work directory'); }
 --FILE--
 <?php
 $cwd = posix_getcwd();
