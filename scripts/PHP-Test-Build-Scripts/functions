@@ -84,14 +84,14 @@ install_snap () {
 
     echo "Configuring the PHP source."
 
-    ./configure --prefix=$install_prefix/installed/$dir $install_exts
+    ./configure --prefix=$install_prefix/TestFest/$dir $install_exts
     if [ "$?" -ne 0 ]; then
         echo "Failed to configure the PHP source in ${dir}.";
         exit 1;
     fi
 
     echo "Building the PHP binary."
-    make && make install
+    make
     if [ "$?" -ne 0 ]; then
         echo "Failed to build the PHP binary in ${dir}.";
         exit 1;
