@@ -5,7 +5,7 @@ ZipArchive::locateName(): Returns false when unknown file in archive is requeste
 $zip = new ZipArchive;
 var_dump($zip->open(dirname(__FILE__) . '/foo.zip', ZIPARCHIVE::CREATE));
 var_dump($zip->locateName('foo'));
---EXPECTF--
+--EXPECT--
 bool(true)
 bool(false)
 --CLEAN--
