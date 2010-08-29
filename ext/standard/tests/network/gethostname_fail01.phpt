@@ -2,9 +2,9 @@
 basic test for gethostname
 --FILE--
 <?php
-echo strlen(gethostname())<strlen(php_uname());
+var_dump(strlen(gethostname())<strlen(php_uname()));
 --EXPECTF--
-1
+bool(true)
 --CREDITS--
 Roy Kaldung, roy@kaldung.com
 PHP Testfest Berlin 8/29/2010
