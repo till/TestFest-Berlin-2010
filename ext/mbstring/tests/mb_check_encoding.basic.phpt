@@ -1,6 +1,14 @@
 --TEST--
 Test mb_check_encoding - basic functionality
+--CREDITS--
+Fabian Blechschmidt Fabian.Blech@gmx.de
+#PHP TestFest 2010 Berlin
 
+--SKIPIF--
+<?php
+extension_loaded('mbstring') or die('skip');
+function_exists('mb_ereg') or die("skip mb_ereg() is not available in this build");
+?>
 
 
 --FILE--
