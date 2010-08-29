@@ -26,7 +26,7 @@ phptrunk_snaps="http://snaps.php.net/php-trunk-latest.tar.gz"
 phptrunk_archive="php-trunk.tgz"
 
 install_prefix="/usr/local"
-install_exts="--enable-gcov --enable-bcmath --enable-calendar --enable-ftp --enable-shmop --enable-sockets --enable-exif --with-zlib --with-kerberos --enable-wddx --enable-zip --with-mime-magic --enable-mbstring --enable-mbregex --enable-pcntl --enable-sysvsem --enable-sysvshm --enable-sysvmsg --with-regex --enable-soap"
+install_exts="--enable-gcov --without-pear --disable-phar --enable-bcmath --enable-calendar --enable-ftp --enable-shmop --enable-sockets --enable-exif --with-zlib --with-kerberos --enable-wddx --enable-zip --with-mime-magic --enable-mbstring --enable-mbregex --enable-pcntl --enable-sysvsem --enable-sysvshm --enable-sysvmsg --with-regex --enable-soap"
 
 
 # Loop through the arguments and set state.
