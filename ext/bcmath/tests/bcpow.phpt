@@ -8,13 +8,11 @@ bcmath.scale=0
 <?php
 var_dump(bcpow('1', '2'));
 var_dump(bcpow('-2', '5'));
-var_dump(bcpow('-2', '5', 2));
 var_dump(bcpow('2', '64'));
 ?>
 --EXPECT--
 string(1) "1"
 string(3) "-32"
-string(5) "-32.00"
 string(20) "18446744073709551616"
 --CREDITS--
 Kai Schröder, k.schroeder@php.net
