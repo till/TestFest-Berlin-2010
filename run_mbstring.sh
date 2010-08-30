@@ -8,7 +8,7 @@ if [ ! -d $phpsrc ]; then
 fi
 
 ext=`echo $0 | sed 's/.*run_//' | sed 's/\\.sh//'`
-if [ x$ext == x ]; then
+if [ "x${ext}" = "x" ]; then
     echo "Copy that script to run_extname.sh"
     exit 2
 fi
