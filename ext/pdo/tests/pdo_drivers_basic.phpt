@@ -1,20 +1,26 @@
 --TEST--
 Test function pdo_drivers() by calling it with its expected arguments
+--SKIPIF--
+<?php if(! extension_loaded('pdo')) print 'extension pdo not loaded'; ?>
 --FILE--
 <?php
-var_dump(pdo_drivers());
+$aPdoDrivers = pdo_drivers();
+
+var_dump(is_array($aPdoDrivers));
+
+foreach (array_keys($aPdoDrivers) as $mKey) {
+    if ('integer' != gettype($mKey)) {
+        echo 'invalid key type: ' . gettype($mKey) . PHP_EOL;
+    }
+    if ('string' != gettype($aPdoDrivers[$mKey])) {
+        echo 'invalid value type: ' . gettype($aPdoDrivers[$mKey]) . PHP_EOL;
+    }
+}
+echo 'test passed' . PHP_EOL;
 ?>
 --EXPECTF--
-array(4) {
-  [0]=>
-  string(5) "mysql"
-  [1]=>
-  string(4) "odbc"
-  [2]=>
-  string(6) "sqlite"
-  [3]=>
-  string(7) "sqlite2"
-}
+bool(true)
+test passed
 --CREDITS--
 Kai Schröder, k.schroeder@php.net
 PHP TestFest Berlin 2010-08-29
