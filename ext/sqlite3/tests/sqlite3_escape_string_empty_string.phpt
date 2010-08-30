@@ -1,10 +1,13 @@
 --TEST--
 SQLite3::escapeString returns empty string on values without length
 --SKIPIF--
-<?php require_once(dirname(__FILE__) . '/skipif.inc');
+<?php
+if (!extension_loaded('sqlite3')) {
+  die('skip');
+}
 --FILE--
 <?php
-require_once(dirname(__FILE__) . '/new_db.inc');
+$db = new SQLite3(':memory:');
 var_dump($db->escapeString(null));
 var_dump($db->escapeString(false));
 --EXPECT--
