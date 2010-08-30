@@ -3,7 +3,6 @@ Test mb_check_encoding - basic functionality
 --CREDITS--
 Fabian Blechschmidt Fabian.Blech@gmx.de
 PHP TestFest Berlin 2010-08-29
-
 --SKIPIF--
 <?php
 extension_loaded('mbstring') or die('skip');
@@ -12,7 +11,6 @@ function_exists('mb_ereg') or die("skip mb_check_encoding() is not available in 
 --REQUEST--
 return "SCRIPT_NAME=/testäöü.php
 QUERY_STRING=test.php"
-
 --FILE--
 <?php
 echo '// String from japan in UTF-8'."\n";
@@ -39,7 +37,6 @@ var_dump(mb_check_encoding($trans_jp_string, 'ISO-2022-JP'));
 echo '//checking REQUEST'."\n";
 var_dump(mb_check_encoding());
 ?>
-
 --EXPECT--
 // String from japan in UTF-8
 bool(true)
