@@ -2,7 +2,7 @@
 SQLite3::busyTimeout wrong parameters
 --SKIPIF--
 <?php
-if (!extension_loaded('sqlite3')) {
+if (!extension_loaded('sqlite3') || version_compare(phpversion(), '5.3.3', '<')) {
   die('skip');
 }
 --FILE--
